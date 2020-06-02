@@ -1,0 +1,37 @@
+import java.io.IOException;
+
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+import org.jsoup.nodes.Element;
+import org.jsoup.select.Elements;
+
+//크롤링 라이브러리 
+//jar(Java Archive)
+
+public class Parsing {
+	public static void main(String[] args) throws IOException {
+		Document doc = Jsoup.connect("https://comic.naver.com/webtoon/list.nhn?titleId=651673").get();
+		String title = doc.title();
+		System.out.println(title);
+		
+		Elements es = doc.select("td.title > a"); //Elements배열같은거. 배열은 아님.
+		for(int i=0; i<es.size(); i++) {
+			Element e = es.get(i); //한개의 Element가 리턴됨
+			String s = e.text();
+			System.out.println(s);
+			
+			String href = e.attr("href"); //attribute속성에서 href부분을 추출
+			System.out.println(href);
+		}
+		
+		//		doc.select("td=[title]"); 이것도 됨
+		
+	}
+
+	
+
+}
+
+//jsoup.org에서 다운받아와야
+//3rd파티에서 가져와 사용
+//jsoup을 Referenced Libraries에 등록. 등록하고 import해서 쓴다.
