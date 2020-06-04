@@ -1,0 +1,68 @@
+package thread;
+
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
+
+public class SetExam02 {
+	public static void main(String[] args) {
+		Set<Integer> set = new TreeSet<>(); {
+			set.add(2);
+			set.add(5);
+			set.add(11);
+			set.add(13);
+			set.add(25);
+			set.add(28);
+			System.out.println("set크기 확인:" + set.size());
+			
+			
+			Set<Integer> myNumber = new TreeSet<Integer>(); 
+			
+			int count=0;
+			while(true) {
+				for (int i = 0; i < 6; i++) { //1~28범위의 숫자 6개. (6번돌려서 추출)
+					int idx = (int) (Math.random() * 28+1); //Math.random() : 0<= Math.random()< 1 : 0.0 ~ 1.0
+					
+					if(!myNumber.contains(idx)) {
+						myNumber.add(idx); // 랜덤 순번의 업체를 List로 추가
+					} else {
+						i--;
+					}
+				
+				}
+				count++;
+				System.out.println(set);
+				System.out.println(myNumber);
+				System.out.println(count);
+				if(set.containsAll(myNumber)==true) break; //제일 가까운 반복문 
+				myNumber.clear();
+			
+			
+			}
+			System.out.println("시도횟수: "+ count);
+		}
+	}
+}
+//Set에 저장되어 있는 6개의 번호 2, 5, 11, 13, 25, 28 과 같은
+//Set이 만들어질때까지의 시도 횟수를 출력
+//while중첩사용 containsAll()을 사용, set과 myNumber비교
+
+//TreeSet도 HashSet과 같이 중복된 데이터를 저장할 수 없고 입력한 순서대로 값을 저장하지 않는다. 
+//차이점은 TreeSet은 기본적으로 오름차순으로 데이터를 정렬한다
+
+
+
+
+//
+//for (int i = 0; i < 6; i++) { //6번 랜덤
+//	Integer idx = (int) (Math.random());
+//	set01.add(idx); // 랜덤 순번의 업체를 List로 추가
+//}
+//	// 랜덤 순번의 업체를 List로 추가
+//for(int i=0; i<set01.size(); i++) {
+//	if(set01.equals("2") && 
+//		result =0;
+//		System.out.println(set01);
+//	} else {
+//		result = -1;
+//	}
